@@ -3,10 +3,10 @@ name: deploy GCP Workspace
 on: push
 
 jobs:
-  terraform:
+  gcloud-setup:
     permissions:
-        contents: "read"
-        id-token: "write"
+      contents: "read"
+      id-token: "write"
     runs-on: ubuntu-latest
     steps:
       - uses: "actions/checkout@v4"
@@ -22,3 +22,30 @@ jobs:
 
       - name: "Use gcloud CLI"
         run: "gcloud info"
+
+  databricks-tf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Setup Terraform"
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.4.0
+
+      - name: Terraform Init
+        working-directory: tf
+        run: terraform init
+
+      - id: plan
+        name: Terraform Plan
+        working-directory: tf
+        run: terraform plan -no-color
+        continue-on-error: true
+
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
+      - name: Terraform Apply
+        working-directory: tf
+        run: terraform apply -auto-approve -input=false
