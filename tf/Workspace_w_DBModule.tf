@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "google" {
-  project = var.project
+  project = ""
 }
 
 provider "databricks" {
