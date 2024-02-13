@@ -3,7 +3,7 @@ name: deploy GCP Workspace
 on: push
 
 jobs:
-  gcloud-setup:
+  databricks-deployment:
     permissions:
       contents: "read"
       id-token: "write"
@@ -21,11 +21,6 @@ jobs:
 
       - name: "Use gcloud CLI"
         run: "gcloud info"
-
-  databricks-tf:
-    runs-on: ubuntu-latest
-
-    steps:
 
       - uses: "actions/checkout@v4"
       - name: "Setup Terraform"
