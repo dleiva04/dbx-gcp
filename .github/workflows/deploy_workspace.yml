@@ -1,0 +1,24 @@
+name: deploy GCP Workspace
+
+on: push
+
+jobs:
+  terraform:
+    # permissions:
+    #     contents: "read"
+    #     id-token: "write"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "actions/checkout@v4"
+      - uses: "google-github-actions/auth@v2"
+        with:
+          workload_identity_provider: "projects/697856052963/locations/global/workloadIdentityPools/gh-actions/providers/github-actions"
+          service_account: sa-gh-actions@fe-dev-sandbox.iam.gserviceaccount.com
+
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v2"
+        with:
+          version: ">= 363.0.0"
+
+      - name: "Use gcloud CLI"
+        run: "gcloud info"
