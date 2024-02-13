@@ -15,7 +15,7 @@ provider "google" {
 
 provider "databricks" {
   host                   = "https://accounts.gcp.databricks.com"
-  google_service_account = var.google_service_account_email
+  google_service_account = "sa-gh-actions@fe-dev-sandbox.iam.gserviceaccount.com"
 }
 
 resource "databricks_user" "gcp-user" {
