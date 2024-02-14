@@ -31,7 +31,7 @@ resource "databricks_mws_workspaces" "this" {
 
 resource "databricks_metastore_assignment" "this" {
   metastore_id = "aa75beb2-fa78-4117-9f14-06a10371db62"
-  workspace_id = databricks_mws_workspaces.this.id
+  workspace_id = databricks_mws_workspaces.this.workspace_id
 }
 
 output "databricks_host" {
