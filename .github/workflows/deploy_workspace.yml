@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: "actions/checkout@v4"
       # https://github.com/google-github-actions/auth
-      - uses: "google-github-actions/auth@v3"
+      - uses: "google-github-actions/auth@v2"
         with:
           workload_identity_provider: "projects/697856052963/locations/global/workloadIdentityPools/gh-actions/providers/github-actions"
           service_account: sa-gh-actions@fe-dev-sandbox.iam.gserviceaccount.com
@@ -28,9 +28,7 @@ jobs:
         run: "gcloud info"
 
       - name: "Setup Terraform"
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.4.0
+        uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
         working-directory: terraform
