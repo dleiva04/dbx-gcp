@@ -9,6 +9,10 @@ terraform {
   }
 }
 
+variable "google_creds" {
+  
+}
+
 provider "google" {
   project = ""
 }
