@@ -1,4 +1,8 @@
 terraform {
+  backend "gcs" {
+    bucket = "terraform-state-bucket-dbx"
+    prefix = "terraform/state"
+  }
   required_providers {
     databricks = {
       source = "databricks/databricks"
