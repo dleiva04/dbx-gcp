@@ -1,5 +1,5 @@
 resource "databricks_mws_networks" "this" {
-  provider     = databricks.accounts
+  provider     = databricks
   account_id   = var.databricks_account_id
   network_name = "test-demo-${random_string.suffix.result}"
   gcp_network_info {
@@ -13,7 +13,7 @@ resource "databricks_mws_networks" "this" {
 }
 
 resource "databricks_mws_workspaces" "this" {
-  provider       = databricks.accounts
+  provider       = databricks
   account_id     = var.databricks_account_id
   workspace_name = "tf-demo-test-${random_string.suffix.result}"
   location       = google_compute_subnetwork.subnet_secondary_ranges.region
