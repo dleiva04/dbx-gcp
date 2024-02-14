@@ -3,6 +3,7 @@ name: deploy GCP Workspace
 on: push
 
 jobs:
+  # https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions
   databricks-deployment:
     permissions:
       contents: "read"
@@ -32,12 +33,12 @@ jobs:
           terraform_version: 1.4.0
 
       - name: Terraform Init
-        working-directory: tf
+        working-directory: terraform
         run: terraform init
 
       - id: plan
         name: Terraform Plan
-        working-directory: tf
+        working-directory: terraform
         run: terraform plan -no-color -input=false -var="google_creds=$GOOGLE_GHA_CREDS_PATH"
         continue-on-error: true
 
@@ -46,5 +47,5 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        working-directory: tf
+        working-directory: terraform
         run: terraform apply -auto-approve -input=false -var="google_creds=$GOOGLE_GHA_CREDS_PATH"
