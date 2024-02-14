@@ -14,6 +14,7 @@ provider "google" {
 }
 
 provider "databricks" {
+  account_id             = "e11e38c5-a449-47b9-b37f-0fa36c821612"
   host                   = "https://accounts.gcp.databricks.com"
   google_service_account = "sa-gh-actions@fe-dev-sandbox.iam.gserviceaccount.com"
 }
