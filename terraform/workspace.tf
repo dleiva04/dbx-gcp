@@ -29,6 +29,11 @@ resource "databricks_mws_workspaces" "this" {
   depends_on = [google_compute_router_nat.nat]
 }
 
+resource "databricks_metastore_assignment" "this" {
+  metastore_id = "aa75beb2-fa78-4117-9f14-06a10371db62"
+  workspace_id = databricks_mws_workspaces.this.id
+}
+
 output "databricks_host" {
   value = databricks_mws_workspaces.this.workspace_url
 }
