@@ -12,6 +12,7 @@ jobs:
     steps:
       - uses: "actions/checkout@v4"
       # https://github.com/google-github-actions/auth
+      # using identity federation
       - uses: "google-github-actions/auth@v2"
         with:
           workload_identity_provider: "projects/697856052963/locations/global/workloadIdentityPools/gh-actions/providers/github-actions"

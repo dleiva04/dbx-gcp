@@ -17,6 +17,12 @@ provider "google" {
   project = var.google_project
 }
 
+# provider "databricks" {
+#   account_id         = var.databricks_account_id
+#   host               = "https://accounts.gcp.databricks.com"
+#   # google_service_account = "" only impersonated SA
+# }
+
 provider "databricks" {
   account_id         = var.databricks_account_id
   host               = "https://accounts.gcp.databricks.com"
