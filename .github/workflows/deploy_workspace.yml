@@ -39,7 +39,7 @@ jobs:
       - id: plan
         name: Terraform Plan
         working-directory: terraform
-        run: terraform plan -no-color -input=false -var="google_creds=$GOOGLE_GHA_CREDS_PATH"
+        run: terraform plan -no-color -input=false -var="google_creds=$GOOGLE_GHA_CREDS_PATH" -var="databricks_account_id=e11e38c5-a449-47b9-b37f-0fa36c821612" -var="google_project=fe-dev-sandbox" -var="google_region=us-central1"
         continue-on-error: true
 
       - name: Terraform Plan Status
@@ -48,4 +48,4 @@ jobs:
 
       - name: Terraform Apply
         working-directory: terraform
-        run: terraform apply -auto-approve -input=false -var="google_creds=$GOOGLE_GHA_CREDS_PATH"
+        run: terraform apply -auto-approve -input=false -var="google_creds=$GOOGLE_GHA_CREDS_PATH" -var="databricks_account_id=e11e38c5-a449-47b9-b37f-0fa36c821612" -var="google_project=fe-dev-sandbox" -var="google_region=us-central1"
