@@ -18,7 +18,9 @@ jobs:
           export_environment_variables: true
           create_credentials_file: true
 
-      - run: export TF_VAR_google_creds=$GOOGLE_GHA_CREDS_PATH
+      - run: |
+          export TF_VAR_google_creds=$GOOGLE_GHA_CREDS_PATH
+          env
 
       - name: "Set up Cloud SDK"
         uses: "google-github-actions/setup-gcloud@v2"
