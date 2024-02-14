@@ -26,10 +26,6 @@ jobs:
       - name: "Use gcloud CLI"
         run: "gcloud info"
 
-      - run: |
-          export TF_VAR_google_creds=$GOOGLE_GHA_CREDS_PATH
-          env
-
       - name: "Setup Terraform"
         uses: hashicorp/setup-terraform@v2
         with:
@@ -51,4 +47,4 @@ jobs:
 
       - name: Terraform Apply
         working-directory: tf
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply -auto-approve -input=false -var="google_creds=$GOOGLE_GHA_CREDS_PATH"
